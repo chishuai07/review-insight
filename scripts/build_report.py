@@ -365,16 +365,16 @@ insight_html = f'''
   <div class="attr-panel ins-panel" id="ins-quad" style="display:none">
     <div class="attr-note">横轴=用户提及频次（据 {N} 条评价统计）；纵轴=优势判读（据评价内容）；象限归属为分析判断。</div>
     <div class="quad">
-      <div></div><div class="qh">用户高频提及</div><div class="qh">用户低频提及</div>
+      <div class="qh" style="font-size:11px;color:var(--muted);line-height:1.5">↑ 我方优势<br>↓ 行业基线</div><div class="qh">用户高频提及 →</div><div class="qh">用户低频提及 →</div>
       <div class="qh">我方优势明显</div>
-      <div class="qcell" style="background:#f0f9f1"><div class="qtitle" style="color:#188038">核心主打卖点 <span>放大、全渠道渗透</span></div>
+      <div class="qcell" style="background:#f0f9f1;--qc:#188038"><div class="qtitle" style="color:#188038">核心主打卖点 <span>放大、全渠道渗透</span></div>
         {quad_chips(QUAD['core'])}</div>
-      <div class="qcell" style="background:#fff8ec"><div class="qtitle" style="color:#b06000">潜在差异化机会 <span>测试性投放，验证用户兴趣</span></div>
+      <div class="qcell" style="background:#fff8ec;--qc:#b06000"><div class="qtitle" style="color:#b06000">潜在差异化机会 <span>测试性投放，验证用户兴趣</span></div>
         {quad_chips(QUAD['opportunity'])}</div>
       <div class="qh">行业普遍做到</div>
-      <div class="qcell" style="background:#f5f6f7"><div class="qtitle" style="color:#5f6368">品类基线 <span>不用重点说，但不能没有</span></div>
+      <div class="qcell" style="background:#f5f6f7;--qc:#5f6368"><div class="qtitle" style="color:#5f6368">品类基线 <span>不用重点说，但不能没有</span></div>
         {quad_chips(QUAD['baseline'])}</div>
-      <div class="qcell" style="background:#eef4fd"><div class="qtitle" style="color:#0b57d0">隐性需求 <span>没人讲但用户在意，可做心智占位</span></div>
+      <div class="qcell" style="background:#eef4fd;--qc:#0b57d0"><div class="qtitle" style="color:#0b57d0">隐性需求 <span>没人讲但用户在意，可做心智占位</span></div>
         {quad_chips(QUAD['hidden'])}</div>
     </div>
   </div>
@@ -450,13 +450,13 @@ html_doc = f'''<!DOCTYPE html>
   .hero p{{font-size:13.5px;color:var(--muted)}}
   h2.sec{{font-size:22px;font-weight:700;letter-spacing:-0.01em;margin:28px 0 14px}}
   .cards{{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}}
-  .cat-card{{background:var(--card);border-radius:16px;padding:16px 18px;border:1px solid var(--line);cursor:pointer;transition:.18s}}
+  .cat-card{{background:var(--card);border-radius:16px;padding:16px 18px;border:1px solid var(--line);cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}}
   .cat-card:hover{{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.08);border-color:#b8bcc4}}
   .goal-cards{{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:6px 0 20px}}
   @media (max-width:760px){{.goal-cards{{grid-template-columns:1fr}}}}
-  .goal-card{{border-radius:20px;padding:20px 22px 24px;color:#fff;cursor:pointer;position:relative;transition:.18s}}
+  .goal-card{{border-radius:20px;padding:20px 22px 24px;color:#fff;cursor:pointer;position:relative;transition:transform .18s ease,box-shadow .18s ease}}
   .goal-card:hover{{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.12)}}
-  .goal-card.active{{box-shadow:0 10px 24px rgba(0,0,0,.20);transform:translateY(-3px)}}
+  .goal-card.active{{box-shadow:0 12px 28px rgba(0,0,0,.24);transform:translateY(-3px) scale(1.02)}}
   .goal-card.active::before{{content:'';position:absolute;left:22px;right:22px;bottom:9px;height:3px;border-radius:2px;background:rgba(255,255,255,.85)}}
   .goal-card.active::after{{content:'当前展示';position:absolute;top:12px;right:14px;font-size:11px;background:rgba(255,255,255,.22);border-radius:6px;padding:2px 8px}}
   .gc-red{{background:linear-gradient(135deg,#ff6961,#d70015)}}
@@ -485,7 +485,7 @@ html_doc = f'''<!DOCTYPE html>
   .p-tmall{{background:#ff5000}}
   .p-jd{{background:#e1251b}}
   .r-nick{{font-weight:600;font-size:14px}}
-  .r-sku{{font-size:12px;color:#0071e3;background:#e8f1fd;border-radius:6px;padding:2px 8px;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
+  .r-sku{{font-size:12px;color:#6e6e73;background:#e8e8ed;border-radius:6px;padding:2px 8px;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
   .r-date{{font-size:12px;color:var(--muted)}}
   .r-tags{{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}}
   .r-tag{{font-size:11px;border-radius:999px;padding:3px 10px;color:#fff;background:var(--c)}}
@@ -494,14 +494,14 @@ html_doc = f'''<!DOCTYPE html>
   .r-pics{{display:flex;flex-wrap:wrap;gap:8px}}
   .r-pics a{{display:block;width:110px;height:110px;border-radius:8px;overflow:hidden;background:var(--tag);flex:0 0 auto}}
   .r-pics img{{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in;transition:.2s}}
-  .r-pics img:hover{{transform:scale(1.04)}}
+  .r-pics img:hover{{filter:brightness(1.05)}}
   .neg-card{{border:1px solid #fdd8d6}}
   .neg-badge{{font-size:11px;color:#d93025;border:1px solid #f3b3b0;border-radius:6px;padding:1px 8px}}
   .attr-panel{{background:var(--card);border-radius:20px;padding:22px 24px;margin:6px 0 16px}}
   .attr-panel h2{{font-size:16px;margin-bottom:4px}}
   .attr-panel .attr-note{{font-size:12px;color:var(--muted);margin-bottom:14px}}
   .attr-grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:12px}}
-  .attr-card{{border:1px solid var(--line);border-left:4px solid var(--ac);border-radius:10px;padding:14px 16px;cursor:pointer;transition:.15s}}
+  .attr-card{{border:1px solid var(--line);border-left:4px solid var(--ac);border-radius:10px;padding:14px 16px;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}}
   .attr-card:hover{{box-shadow:0 4px 12px rgba(0,0,0,.08)}}
   .attr-card.active{{background:#fff8f6;border-color:var(--ac);box-shadow:0 4px 12px rgba(0,0,0,.08)}}
   .attr-card .ac-head{{display:flex;align-items:baseline;gap:8px;margin-bottom:4px}}
@@ -509,6 +509,8 @@ html_doc = f'''<!DOCTYPE html>
   .attr-card .ac-name{{font-size:14px;font-weight:700}}
   .attr-card .ac-def{{font-size:12px;color:var(--muted);margin-bottom:8px}}
   .attr-card .ac-sug{{font-size:12.5px;color:#3a3f46;background:#f7f8fa;border-radius:8px;padding:8px 10px}}
+  .attr-card .ac-advice{{font-size:12px;color:var(--muted);margin-top:6px;padding:8px 10px;background:#f0f5ff;border-radius:8px;line-height:1.7}}
+  .attr-card .ac-pct{{font-size:12px;color:var(--muted);margin-left:auto;font-variant-numeric:tabular-nums}}
   .attr-foot{{font-size:12px;color:var(--muted);margin-top:12px}}
   mark.hl-vocab{{background:#fff1e0;color:#c2570a;padding:0 2px;border-radius:3px}}
   mark.hl-metaphor{{background:#fde7f3;color:#c2185b;padding:0 2px;border-radius:3px}}
@@ -523,7 +525,7 @@ html_doc = f'''<!DOCTYPE html>
   .role-tag{{display:inline-block;font-size:11px;background:#eef2ff;color:#3b5bdb;border-radius:6px;padding:2px 8px;white-space:nowrap}}
   .quad{{display:grid;grid-template-columns:110px 1fr 1fr;gap:10px;margin-top:12px}}
   .qh{{display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#3a3f46;text-align:center}}
-  .qcell{{border:1px solid var(--line);border-radius:10px;padding:14px}}
+  .qcell{{border:1px solid var(--line);border-left:3px solid var(--qc,#d2d2d7);border-radius:10px;padding:14px}}
   .qtitle{{font-weight:800;font-size:14px;margin-bottom:10px}}
   .qtitle span{{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px}}
   .chip{{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:12px;margin:0 6px 6px 0;color:#3a3f46}}
@@ -563,6 +565,22 @@ html_doc = f'''<!DOCTYPE html>
   .ph-desc{{font-size:12.5px;color:var(--muted);line-height:1.8}}
   #matGrid{{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}}
   @media (max-width:1100px){{#matGrid{{grid-template-columns:repeat(2,1fr)}}}}
+  @media (max-width:600px){{#matGrid{{grid-template-columns:1fr}}}}
+  html{{scroll-padding-top:60px}}
+  .table-scroll{{overflow-x:auto;-webkit-overflow-scrolling:touch}}
+  @media (max-width:600px){{
+    .toolbar{{position:static;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px}}
+    .toolbar button{{flex:0 0 auto;white-space:nowrap}}
+    .attr-panel{{overflow-x:auto}}
+  }}
+  .goal-sec{{animation:goalFade .18s ease}}
+  @keyframes goalFade{{from{{opacity:0;transform:translateY(8px)}}to{{opacity:1;transform:translateY(0)}}}}
+  @media print{{
+    .toolbar,.platform-bar,.goal-cards,.lightbox,.goal-btn{{display:none!important}}
+    .goal-sec{{display:block!important;animation:none}}
+    .review{{break-inside:avoid;border:none;box-shadow:none}}
+    body{{background:#fff}}
+  }}
   .mat-card{{padding:12px 14px}}
   .mat-card .ac-num{{font-size:24px}}
   .mat-card .ac-desc{{font-size:11.5px;margin-top:6px}}
@@ -604,10 +622,10 @@ html_doc = f'''<!DOCTYPE html>
   <div class="insight">
     <h2>归类速览</h2>
     <p>合计 <b>{t_all[0]}</b> 条评价：好评 <b>{t_all[1]}</b> 条（{t_all[1]/t_all[0]*100:.1f}%）、差评 <b>{t_all[2]}</b> 条（{t_all[2]/t_all[0]*100:.1f}%）；带图评价 {t_all[3]} 条、实拍图 {t_all[4]} 张。{top_text}</p>
-    <table>
+    <div class="table-scroll"><table>
       <tr><th>平台</th><th>评价数</th><th>好评</th><th>差评</th><th>差评率</th><th>带图评价</th><th>图片数</th><th>时间跨度</th></tr>
 {plat_rows}      <tr><td><b>合计</b></td><td><b>{t_all[0]}</b></td><td><b>{t_all[1]}</b></td><td><b>{t_all[2]}</b></td><td><b>{t_all[2]/t_all[0]*100:.1f}%</b></td><td><b>{t_all[3]}</b></td><td><b>{t_all[4]}</b></td><td>{daterange(DATA)}</td></tr>
-    </table>
+    </table></div>
     <p><b>平台差异</b>：{diff_text}。差评口径=评价内容明确提到不好；好评动因与素材提取规则见各模块说明。</p>
   </div>
 
@@ -691,7 +709,7 @@ html_doc = f'''<!DOCTYPE html>
   <footer>数据来源：{footer_sources}；图片为平台CDN直链，需联网查看；差评口径=评价内容明确提到不好。</footer>
 </div>
 
-<div class="lightbox" id="lb"><img id="lbimg" src="" alt=""></div>
+<div class="lightbox" id="lb" role="dialog" aria-label="评价图片放大预览"><img id="lbimg" src="" alt="评价图片放大预览"></div>
 
 <script>
 const DATA = {data_js};
@@ -743,7 +761,7 @@ function renderAttr(rs){{
   }}).join('');
   document.querySelectorAll('.attr-card').forEach(c=>c.addEventListener('click',()=>{{
     setFilter(filter==='neg:'+c.dataset.at ? 'neg' : 'neg:'+c.dataset.at);
-    window.scrollTo({{top: document.querySelector('.toolbar').offsetTop - 6, behavior:'smooth'}});
+    scrollToList();
   }}));
   panel.style.display = 'block';
 }}
@@ -762,7 +780,7 @@ function renderMat(rs){{
   }}).join('');
   document.querySelectorAll('#matGrid .attr-card').forEach(c=>c.addEventListener('click',()=>{{
     setFilter(filter==='mat:'+c.dataset.mat ? 'pos' : 'mat:'+c.dataset.mat);
-    window.scrollTo({{top: document.querySelector('.toolbar').offsetTop - 6, behavior:'smooth'}});
+    scrollToList();
   }}));
 }}
 function escapeHtml(s){{ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }}
@@ -792,7 +810,7 @@ function renderMotive(rs){{
   }}).join('');
   document.querySelectorAll('#motiveGrid .attr-card').forEach(c=>c.addEventListener('click',()=>{{
     setFilter(filter==='motive:'+c.dataset.motive ? 'pos' : 'motive:'+c.dataset.motive);
-    window.scrollTo({{top: document.querySelector('.toolbar').offsetTop - 6, behavior:'smooth'}});
+    scrollToList();
   }}));
 }}
 function render(){{
@@ -833,7 +851,7 @@ function render(){{
     }}).join('') : '';
     const vidb = r.video ? '<span class="vid-badge">含视频</span>' : '';
     const pname = (PLATMETA[r.p]||{{name:r.p}}).name;
-    const pics = r.pics.map((u,j)=>`<a href="${{r.bigs[j]||u}}" target="_blank" rel="noopener"><img loading="lazy" src="${{u}}" alt="评价图"></a>`).join('');
+    const pics = r.pics.map((u,j)=>`<a href="${{r.bigs[j]||u}}" target="_blank" rel="noopener"><img loading="lazy" src="${{u}}" alt="评价图" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22110%22 height=%22110%22><rect width=%22110%22 height=%22110%22 fill=%22%23e8e8ed%22/><text x=%2255%22 y=%2260%22 font-size=%2212%22 fill=%22%236e6e73%22 text-anchor=%22middle%22>图片加载失败</text></svg>'"></a>`).join('');
     const isEmpty = r.content.length < 6;
     const content = isEmpty ? `<span class="r-empty">该用户未填写评价内容</span>` : (filter.startsWith('mat:') ? highlight(r) : r.content);
     const matb = r.material ? '<span class="mat-badge">语言素材</span>' : '';
@@ -851,6 +869,10 @@ function render(){{
   renderMat(rs);
   renderMotive(rs);
 }}
+function scrollToList(){{
+  const t=document.querySelector('.toolbar');
+  window.scrollTo({{top:t.offsetTop-8,behavior:'smooth'}});
+}}
 function setFilter(f){{
   filter = f;
   document.querySelectorAll('.toolbar button').forEach(b=>b.classList.toggle('active', b.dataset.f===f || (f.startsWith('neg:') && b.dataset.f==='neg') || ((f.startsWith('mat:')||f.startsWith('motive:')) && b.dataset.f==='pos')));
@@ -859,7 +881,7 @@ function setFilter(f){{
 document.querySelectorAll('.toolbar button').forEach(b=>b.addEventListener('click',()=>setFilter(b.dataset.f)));
 document.querySelectorAll('.cat-card').forEach(c=>c.addEventListener('click',()=>{{
   setFilter(c.dataset.cat);
-  window.scrollTo({{top: document.querySelector('.toolbar').offsetTop - 6, behavior:'smooth'}});
+  scrollToList();
 }}));
 function showGoal(g){{
   ['neg','pos','insight'].forEach(k=>{{
@@ -885,7 +907,7 @@ document.querySelectorAll('.sub-tab-g').forEach(t=>t.addEventListener('click',()
 }}));
 document.querySelectorAll('.row-click, .chip-click, .goal-btn').forEach(c=>c.addEventListener('click',()=>{{
   setFilter(c.dataset.f);
-  window.scrollTo({{top: document.querySelector('.toolbar').offsetTop - 6, behavior:'smooth'}});
+  scrollToList();
 }}));
 document.querySelectorAll('.platform-bar button').forEach(b=>b.addEventListener('click',()=>{{
   platform = b.dataset.p;
@@ -897,6 +919,7 @@ document.addEventListener('click',e=>{{
   if(e.target.tagName==='IMG' && e.target.closest('.r-pics')){{e.preventDefault();lbimg.src=e.target.parentElement.href;lb.style.display='flex'}}
 }});
 lb.addEventListener('click',()=>{{lb.style.display='none';lbimg.src=''}});
+document.addEventListener('keydown',e=>{{if(e.key==='Escape'&&lb.style.display==='flex'){{lb.style.display='none';lbimg.src=''}}}});
 render();
 </script>
 </body>
