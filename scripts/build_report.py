@@ -441,27 +441,27 @@ html_doc = f'''<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>评价卖点归类 — {PRODUCT}</title>
 <style>
-  :root{{--bg:#f5f6f8;--card:#fff;--text:#22252a;--muted:#8a9099;--accent:#ff5000;--line:#eceef1;--tag:#f2f3f5}}
+  :root{{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--muted:#6e6e73;--accent:#0071e3;--line:#d2d2d7;--tag:#e8e8ed}}
   *{{box-sizing:border-box;margin:0;padding:0}}
-  body{{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.65}}
-  .wrap{{max-width:1000px;margin:0 auto;padding:24px 16px 60px}}
-  header.hero{{background:linear-gradient(135deg,#ff5000,#ff8a3c);color:#fff;border-radius:14px;padding:26px;margin-bottom:18px}}
-  .hero h1{{font-size:20px;font-weight:700;line-height:1.4;margin-bottom:8px}}
-  .hero p{{font-size:13px;opacity:.9}}
-  h2.sec{{font-size:17px;margin:22px 0 12px}}
+  body{{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}}
+  .wrap{{max-width:1080px;margin:0 auto;padding:32px 20px 64px}}
+  header.hero{{background:#fff;color:var(--text);border:1px solid var(--line);border-radius:24px;padding:38px 36px;margin-bottom:22px}}
+  .hero h1{{font-size:28px;font-weight:700;line-height:1.3;margin-bottom:10px;letter-spacing:-0.02em}}
+  .hero p{{font-size:13.5px;color:var(--muted)}}
+  h2.sec{{font-size:22px;font-weight:700;letter-spacing:-0.01em;margin:28px 0 14px}}
   .cards{{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}}
-  .cat-card{{background:var(--card);border-radius:12px;padding:14px 16px;border-top:3px solid var(--c);cursor:pointer;transition:.15s}}
-  .cat-card:hover{{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.08)}}
+  .cat-card{{background:var(--card);border-radius:16px;padding:16px 18px;border:1px solid var(--line);cursor:pointer;transition:.18s}}
+  .cat-card:hover{{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.08);border-color:#b8bcc4}}
   .goal-cards{{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:6px 0 20px}}
   @media (max-width:760px){{.goal-cards{{grid-template-columns:1fr}}}}
-  .goal-card{{border-radius:14px;padding:18px 20px 22px;color:#fff;cursor:pointer;position:relative;transition:.18s}}
+  .goal-card{{border-radius:20px;padding:20px 22px 24px;color:#fff;cursor:pointer;position:relative;transition:.18s}}
   .goal-card:hover{{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.12)}}
   .goal-card.active{{box-shadow:0 10px 24px rgba(0,0,0,.20);transform:translateY(-3px)}}
   .goal-card.active::before{{content:'';position:absolute;left:22px;right:22px;bottom:9px;height:3px;border-radius:2px;background:rgba(255,255,255,.85)}}
   .goal-card.active::after{{content:'当前展示';position:absolute;top:12px;right:14px;font-size:11px;background:rgba(255,255,255,.22);border-radius:6px;padding:2px 8px}}
-  .gc-red{{background:linear-gradient(135deg,#e8564a,#d93025)}}
-  .gc-green{{background:linear-gradient(135deg,#34a853,#188038)}}
-  .gc-blue{{background:linear-gradient(135deg,#4a86e8,#0b57d0)}}
+  .gc-red{{background:linear-gradient(135deg,#ff6961,#d70015)}}
+  .gc-green{{background:linear-gradient(135deg,#30d158,#1f7a38)}}
+  .gc-blue{{background:linear-gradient(135deg,#0a84ff,#0058c7)}}
   .goal-card .gc-num{{font-size:36px;font-weight:800;line-height:1.1}}
   .goal-card .gc-name{{font-size:16px;font-weight:800;margin-top:4px}}
   .goal-card .gc-sub{{font-size:12px;opacity:.88;margin-top:4px}}
@@ -470,25 +470,25 @@ html_doc = f'''<!DOCTYPE html>
   .cc-num{{font-size:24px;font-weight:800}}
   .cc-name{{font-size:13px;font-weight:600;margin-top:2px}}
   .platform-bar{{display:flex;gap:10px;margin:18px 0 4px;align-items:center}}
-  .platform-bar button{{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:10px 22px;font-size:14px;font-weight:600;color:#4a4f57;cursor:pointer;transition:.15s}}
-  .platform-bar button.active[data-p="all"]{{background:#22252a;color:#fff;border-color:#22252a}}
+  .platform-bar button{{border:1px solid transparent;background:#e8e8ed;border-radius:999px;padding:10px 24px;font-size:14px;font-weight:600;color:#1d1d1f;cursor:pointer;transition:.15s}}
+  .platform-bar button.active[data-p="all"]{{background:#1d1d1f;color:#fff}}
   .platform-bar button.active[data-p="tmall"]{{background:#ff5000;color:#fff;border-color:#ff5000}}
   .platform-bar button.active[data-p="jd"]{{background:#e1251b;color:#fff;border-color:#e1251b}}
   .platform-bar .pb-sub{{font-size:12px;color:var(--muted)}}
   .toolbar{{display:flex;flex-wrap:wrap;gap:8px;align-items:center;position:sticky;top:0;z-index:10;background:var(--bg);padding:10px 0}}
-  .toolbar button{{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px;font-size:13px;color:#4a4f57;cursor:pointer}}
+  .toolbar button{{border:1px solid transparent;background:#e8e8ed;border-radius:999px;padding:7px 16px;font-size:13px;color:#1d1d1f;cursor:pointer;transition:.15s}}
   .toolbar button.active{{background:var(--c,var(--accent));border-color:var(--c,var(--accent));color:#fff}}
   .count{{font-size:12px;color:var(--muted)}}
-  .review{{background:var(--card);border-radius:14px;padding:18px 20px;margin-bottom:14px}}
+  .review{{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-bottom:14px}}
   .r-head{{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}}
   .r-platform{{font-size:11px;font-weight:700;border-radius:6px;padding:2px 8px;color:#fff}}
   .p-tmall{{background:#ff5000}}
   .p-jd{{background:#e1251b}}
   .r-nick{{font-weight:600;font-size:14px}}
-  .r-sku{{font-size:12px;color:var(--accent);background:#fff2ea;border-radius:6px;padding:2px 8px;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
+  .r-sku{{font-size:12px;color:#0071e3;background:#e8f1fd;border-radius:6px;padding:2px 8px;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
   .r-date{{font-size:12px;color:var(--muted)}}
   .r-tags{{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}}
-  .r-tag{{font-size:11px;border-radius:6px;padding:2px 8px;color:#fff;background:var(--c)}}
+  .r-tag{{font-size:11px;border-radius:999px;padding:3px 10px;color:#fff;background:var(--c)}}
   .r-content{{font-size:14.5px;margin-bottom:10px}}
   .r-empty{{font-size:13px;color:var(--muted)}}
   .r-pics{{display:flex;flex-wrap:wrap;gap:8px}}
@@ -497,7 +497,7 @@ html_doc = f'''<!DOCTYPE html>
   .r-pics img:hover{{transform:scale(1.04)}}
   .neg-card{{border:1px solid #fdd8d6}}
   .neg-badge{{font-size:11px;color:#d93025;border:1px solid #f3b3b0;border-radius:6px;padding:1px 8px}}
-  .attr-panel{{background:var(--card);border-radius:14px;padding:20px 22px;margin:6px 0 16px}}
+  .attr-panel{{background:var(--card);border-radius:20px;padding:22px 24px;margin:6px 0 16px}}
   .attr-panel h2{{font-size:16px;margin-bottom:4px}}
   .attr-panel .attr-note{{font-size:12px;color:var(--muted);margin-bottom:14px}}
   .attr-grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:12px}}
@@ -533,15 +533,15 @@ html_doc = f'''<!DOCTYPE html>
   .row-click:hover td{{background:#f7f8fa}}
   .row-go{{color:var(--accent);font-weight:800}}
   .vid-badge{{font-size:11px;color:#1a73e8;border:1px solid #bcd4f7;border-radius:6px;padding:1px 8px}}
-  .insight{{background:var(--card);border-radius:14px;padding:18px 22px;margin-bottom:18px;font-size:14px}}
+  .insight{{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 26px;margin-bottom:20px;font-size:14px}}
   .insight h2{{font-size:16px;margin-bottom:10px}}
   .insight p{{margin-bottom:8px;color:#3a3f46}}
   .insight table{{border-collapse:collapse;width:100%;font-size:13px;margin:8px 0}}
   .insight th,.insight td{{border:1px solid var(--line);padding:6px 10px;text-align:center}}
-  .insight th{{background:#f7f8fa;font-weight:600}}
+  .insight th{{background:#fafafc;font-weight:600;color:#6e6e73}}
   .insight td:first-child,.insight th:first-child{{text-align:left}}
   footer{{margin-top:26px;text-align:center;font-size:12px;color:var(--muted)}}
-  .goal-sec{{margin:26px 0 18px;border-radius:16px;padding:20px 22px;background:var(--card);border:1px solid var(--line)}}
+  .goal-sec{{margin:26px 0 18px;border-radius:22px;padding:24px 26px;background:var(--card);border:1px solid var(--line)}}
   .goal-red{{border-top:4px solid #d93025}}
   .goal-green{{border-top:4px solid #188038}}
   .goal-blue{{border-top:4px solid #0b57d0}}
@@ -552,7 +552,7 @@ html_doc = f'''<!DOCTYPE html>
   .goal-blue .goal-badge{{background:#0b57d0}}
   .goal-head h2{{font-size:19px;margin:0}}
   .goal-sub{{font-size:12.5px;color:var(--muted);margin:0 0 12px}}
-  .goal-btn{{margin-left:auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 16px;font-size:12.5px;cursor:pointer;color:#3a3f46}}
+  .goal-btn{{margin-left:auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 18px;font-size:12.5px;cursor:pointer;color:#0071e3}}
   .goal-btn:hover{{border-color:var(--accent);color:var(--accent)}}
   .goal-sec .attr-panel{{padding:12px 0 0;margin:0;background:transparent}}
   .b-grid{{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(250px,1fr);gap:16px;align-items:start}}
@@ -567,9 +567,9 @@ html_doc = f'''<!DOCTYPE html>
   .mat-card .ac-num{{font-size:24px}}
   .mat-card .ac-desc{{font-size:11.5px;margin-top:6px}}
   .sub-tabs{{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:4px 0 14px}}
-  .sub-tab{{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 18px;font-size:13px;cursor:pointer;color:#3a3f46}}
+  .sub-tab{{border:1px solid transparent;background:#e8e8ed;border-radius:999px;padding:8px 20px;font-size:13px;cursor:pointer;color:#1d1d1f;transition:.15s}}
   .sub-tab:hover{{border-color:var(--accent);color:var(--accent)}}
-  .sub-tab.active{{background:#0b57d0;border-color:#0b57d0;color:#fff;font-weight:700}}
+  .sub-tab.active{{background:#0071e3;color:#fff;font-weight:600}}
   .sub-tab-g.active{{background:#188038;border-color:#188038}}
   .sub-tab-note{{margin-left:auto;font-size:12px;color:var(--muted)}}
   .ins-panel{{padding-top:4px}}
