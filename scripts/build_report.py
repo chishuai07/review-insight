@@ -36,6 +36,8 @@ CAT = {
     '使用体验与功能': ('experience', '使用体验·功能', '#1a73e8'),
     '耗材与配件': ('material', '耗材与配件', '#34a853'),
 }
+# 品类无关：以下所有词表均可在 config 中按品类覆盖；默认值为 3D 打印示例
+CAT = {k: tuple(v) for k, v in CFG.get('cat', CAT).items()}
 
 def cn_date(iso):
     m = re.match(r'(\d+)-(\d+)-(\d+)', iso or '')
@@ -103,6 +105,13 @@ VIVID_PROD = ['翻车','支撑','稳定','料盘','加热']
 VIVID_METAPHOR = ['璀璨明珠','实力标杆','神机','艺术品','碾压','真香','不香了','闭眼入','天花板','神器','承包','太值了','刚刚硬']
 NUM_RE = re.compile(r'(?:\d+(?:\.\d+)?\s*[个多]?\s*锅|[一二两三四五六七八九十]+锅)')
 HL_SCENE = ['无牙仔','翅膀纹理','翅膀','冰淇淋','螺旋纹路','螺旋','头发丝','发丝','符文刻印','符文','服装的褶皱','褶皱','小恐龙','微缩模型','高达','牙模','珠宝','首饰','蜡模','浮雕','人偶','兵人','眼睛高光','恐龙','小朋友','年会','上色','桌面','屋外','游戏手办','工作室']
+MATCFG = CFG.get('material', {})
+MAT_CATS = {k: tuple(v) for k, v in MATCFG.get('cats', MAT_CATS).items()}
+VIVID_SCENE = MATCFG.get('vivid_scene', VIVID_SCENE)
+VIVID_WEAK = MATCFG.get('vivid_weak', VIVID_WEAK)
+VIVID_PROD = MATCFG.get('vivid_prod', VIVID_PROD)
+VIVID_METAPHOR = MATCFG.get('vivid_metaphor', VIVID_METAPHOR)
+HL_SCENE = MATCFG.get('hl_scene', HL_SCENE)
 for r in DATA:
     if r['neg']:
         continue
@@ -157,6 +166,7 @@ TEXT_POINTS = [
     ('gain', '远程售后·手把手', ['远程','手把手','耐心','视频指导','一对一','有问必答','随叫随到','指导']),
     ('gain', '赠品/性价比惊喜', ['赠品','赠送','送了','大礼包','真香']),
 ]
+TEXT_POINTS = [tuple(x) for x in CFG.get('text_points', TEXT_POINTS)]
 
 def motive_points(r):
     """返回该好评命中的夸赞点：类型 -> [点名,...]"""
@@ -302,6 +312,7 @@ KWCHIPS = {
     'ai': ['AI','摄像头','监控','延时'],
     'packlog': ['包装','物流','快递'],
 }
+KWCHIPS = CFG.get('kwchips', KWCHIPS)
 kwchips_js = json.dumps(KWCHIPS, ensure_ascii=False)
 scen_rows = ''
 for i, (name, words, role, sug) in enumerate(SCEN):

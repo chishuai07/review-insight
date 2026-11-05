@@ -1,6 +1,6 @@
 ---
 name: review-insight
-description: 电商商品评价的采集、归类与「差评止损 / 好评增效 / 洞察增收」三层业务目标可交互 HTML 报告生成。适用于：天猫/淘宝、京东等商品评价抓取与卖点归类；差评归因分层（硬缺陷/服务/预期不符/场景错配）；好评语言素材提取与好评动因拆分（标配型/增益型/决策验证型，含竞品评价对比校准）；使用场景、用户身份与品类感知基线图洞察；把已有评价 JSON 生成带平台切换、点击筛选、图片灯箱的单文件 HTML 分析报告。当用户提出"分析这个商品的评价""做评价归类/卖点分布报告""提取好评素材/差评归因""和竞品评价对比"等需求时使用。
+description: 不限制品类的电商商品评价采集、归类与「差评止损 / 好评增效 / 洞察增收」三层业务目标可交互 HTML 报告生成。适用于：天猫/淘宝、京东等商品评价抓取与卖点归类；差评归因分层（硬缺陷/服务/预期不符/场景错配）；好评语言素材提取与好评动因拆分（标配型/增益型/决策验证型，含竞品评价对比校准）；使用场景、用户身份与品类感知基线图洞察；把已有评价 JSON 生成带平台切换、点击筛选、图片灯箱的单文件 HTML 分析报告。当用户提出"分析这个商品的评价""做评价归类/卖点分布报告""提取好评素材/差评归因""和竞品评价对比"等需求时使用。
 ---
 
 # 评价报告 · ReviewInsight（电商评价三层业务目标分析）
@@ -29,7 +29,7 @@ description: 电商商品评价的采集、归类与「差评止损 / 好评增�
 
 ### 4. 生成报告
 1. 按 [references/data-schema.md](references/data-schema.md) 准备每平台 `stats JSON`（含 `reviews` 明细与 `dims`/`neg` 等字段）。
-2. 复制 `assets/config.example.json` 为项目 `report_config.json` 并填写；品类不是 3D 打印时，在 config 中覆盖 `scen`/`persona`/`quad`，并调整生成器顶部 `CAT`/`TEXT_POINTS`/素材词表。
+2. 复制 `assets/config.example.json` 为项目 `report_config.json` 并填写。**不限制品类**：3D 打印、家电、美妆、食品等均可；按品类在 config 中定义维度 `cat`、夸赞点 `text_points`、素材词表 `material`、场景 `scen`、人群 `persona`、象限 `quad` 与象限关键词 `kwchips`（默认值仅为 3D 打印示例），分类时 stats JSON 的 `dims` 必须使用 config `cat` 中的中文维度名。
 3. 运行：
 ```bash
 python3 scripts/build_report.py report_config.json

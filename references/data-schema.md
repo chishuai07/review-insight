@@ -33,7 +33,7 @@
   ]
 }
 ```
-- `dims` 为维度中文名，生成器 `CAT` 映射为英文键：打印精度与效果=quality、操作易用性=easy、打印速度=speed、性价比与赠品=value、物流发货=logistics、包装防护=pack、质量做工=build、外观设计=design、客服服务=service、使用体验与功能=experience、耗材与配件=material。新增品类维度时同步修改 `CAT`。
+- `dims` 必须与 config `cat` 的中文维度名一致。生成器默认 `CAT`（3D 打印示例）映射：打印精度与效果=quality、操作易用性=easy、打印速度=speed、性价比与赠品=value、物流发货=logistics、包装防护=pack、质量做工=build、外观设计=design、客服服务=service、使用体验与功能=experience、耗材与配件=material。新增品类维度时同步修改 `CAT`。
 - 无维度且正文 ≥6 字 → overall（整体好评）；无内容 → default。
 - `neg=true` 必须已经人工复核（见 classification-rules.md）。
 
@@ -48,6 +48,10 @@
 | platforms | 是 | 1~N 个平台：`key`（英文标识）、`name`（表格全称）、`short`（按钮/徽章短名）、`color`、`stats`（stats JSON 路径）、`source`（如 item id，用于页脚） |
 | competitor | 否 | `{name, path}`；path 为竞品评价 JSON，省略则竞品模块显示待接入 |
 | negtype_map | 否 | 差评归因映射路径，省略则全部差评默认 defect |
+| cat | 否 | 按品类定义维度：`{"中文维度名": ["英文key", "卡片显示名", "颜色"]}`；覆盖后 `dims` 用这里的中文名 |
+| text_points | 否 | 夸赞点：`[["std|gain", "点名", ["关键词..."]], ...]`，我方与竞品共用此口径 |
+| material | 否 | 素材词表：`{cats, vivid_scene, vivid_weak, vivid_prod, vivid_metaphor, hl_scene}`；`cats` 为 `{"分类key": ["显示名", "颜色", ["关键词..."], "用途建议"]}` |
+| kwchips | 否 | 象限自定义标签关键词：`{"标签key": ["关键词..."]}`，供 quad 的 `kw:标签key` 筛选用 |
 | scen / persona | 否 | 覆盖默认场景/人群表：`[[名称, [关键词...], 定位, 营销建议], ...]` |
 | quad | 否 | 覆盖象限标签：`{core, opportunity, baseline, hidden}`，每项为 `[[显示文案, 筛选目标], ...]`；筛选目标为维度英文键或 `kw:xxx`（xxx 在生成器 KWCHIPS 中定义） |
 

@@ -2,6 +2,8 @@
 
 把电商商品评价变成一份**可交互的三层业务目标分析 HTML 报告**的 AI Agent Skill。
 
+**不限制品类**：3D 打印、家电、美妆、食品、服饰等均可，全部分析词表都可按品类配置。
+
 适用平台：天猫/淘宝、京东等（浏览器采集）；也支持直接喂入已有评价数据（JSON / 同类报告 HTML）。
 
 ## 报告包含什么
@@ -61,7 +63,7 @@ python3 scripts/build_report.py report_config.json
 }
 ```
 
-非 3D 打印品类时，在 config 中覆盖 `scen` / `persona` / `quad`，并调整生成器中的 `CAT` 维度表、`TEXT_POINTS` 夸赞点与素材词表。
+按品类在 config 中定义：`cat`（卖点维度）、`text_points`（夸赞点与竞品口径）、`material`（素材分类与画面词表）、`scen` / `persona` / `quad` / `kwchips`（场景、人群、象限）。生成器默认值仅为 3D 打印示例，全部可覆盖，无需改代码。
 
 ## 目录结构
 
