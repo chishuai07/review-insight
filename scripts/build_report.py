@@ -452,7 +452,7 @@ html_doc = f'''<!DOCTYPE html>
   .cards{{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}}
   .cat-card{{background:var(--card);border-radius:16px;padding:16px 18px;border:1px solid var(--line);cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}}
   .cat-card:hover{{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.08);border-color:#b8bcc4}}
-  .goal-cards{{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:6px 0 20px}}
+  .goal-cards{{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:12px 0 24px}}
   @media (max-width:760px){{.goal-cards{{grid-template-columns:1fr}}}}
   .goal-card{{border-radius:20px;padding:20px 22px 24px;color:#fff;cursor:pointer;position:relative;transition:transform .18s ease,box-shadow .18s ease}}
   .goal-card:hover{{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.12)}}
@@ -469,7 +469,7 @@ html_doc = f'''<!DOCTYPE html>
   .cat-card.big-neg{{background:linear-gradient(135deg,#d93025,#f28b82)}}
   .cc-num{{font-size:24px;font-weight:800}}
   .cc-name{{font-size:13px;font-weight:600;margin-top:2px}}
-  .platform-bar{{display:flex;gap:10px;margin:18px 0 4px;align-items:center}}
+  .platform-bar{{display:flex;gap:10px;margin:20px 0 18px;align-items:center;flex-wrap:wrap}}
   .platform-bar button{{border:1px solid transparent;background:#e8e8ed;border-radius:999px;padding:10px 24px;font-size:14px;font-weight:600;color:#1d1d1f;cursor:pointer;transition:.15s}}
   .platform-bar button.active[data-p="all"]{{background:#1d1d1f;color:#fff}}
   .platform-bar button.active[data-p="tmall"]{{background:#ff5000;color:#fff;border-color:#ff5000}}
