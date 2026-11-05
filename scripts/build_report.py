@@ -439,7 +439,7 @@ html_doc = f'''<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>评价卖点归类 — {PRODUCT}</title>
+<title>{PRODUCT} — 评价分析</title>
 <style>
   :root{{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--muted:#6e6e73;--accent:#0071e3;--line:#d2d2d7;--tag:#e8e8ed}}
   *{{box-sizing:border-box;margin:0;padding:0}}
@@ -615,7 +615,7 @@ html_doc = f'''<!DOCTYPE html>
 <body>
 <div class="wrap">
   <header class="hero">
-    <h1>{PRODUCT} — 评价卖点归类分析</h1>
+    <h1>{PRODUCT} — 评价分析</h1>
     <p>共整理 {N} 条评价：{plat_sub} · 按卖点认可维度分类 · 一条评价可属于多个类别 · {TODAY}</p>
   </header>
 
